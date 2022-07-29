@@ -1,0 +1,44 @@
+﻿{
+	"code": "cosmicshard",
+	"class": "shardcluster",
+	"variantgroups": [
+		{
+			"code": "variant",
+			"states": [ "large1", "large2" ]
+		}
+	],
+	"drops": [
+		{
+			"type": "item",
+			"code": "cosmicshard",
+			"quantity": {
+				"avg": 3.5,
+				"var": 1.5
+			}
+		}
+	],
+	"shape": {
+		"base": "game:block/stone/mineral/{variant}"
+	},
+	"textures": {
+		"all": {
+			"base": "block/cosmicshard"
+		}
+	},
+	"creativeinventory": {
+		"cosmosis": [ "*" ],
+		"general": [ "*" ]
+	},
+	"requiredMiningTier": 2,
+	"resistance": 7,
+	"drawtype": "json",
+	"sidesolid": { "all": false },
+	"sideopaque": { "all": false },
+	"sideao": { "all": false },
+	"vertexFlags": {
+		"zOffset": 2,
+		"reflective": true
+	},
+	"lightAbsorption": 0,
+	"lightHsv": [ 32, 6, 10]
+}

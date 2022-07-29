@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "cosmosis",
+  "name": "Cosmosis",
+  "authors": ["Memespren"],
+  "description": "Your friendly neighborhood cosmic storage mod",
+  "version": "0.1.0",
+  "dependencies": {
+    "game": ""
+  }
+}

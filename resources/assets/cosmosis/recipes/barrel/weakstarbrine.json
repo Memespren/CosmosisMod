@@ -1,0 +1,20 @@
+﻿{
+  "code": "weakstarbrine",
+  "ingredients": [
+    {
+      "type": "item",
+      "code": "game:waterportion",
+      "litres": 5
+    },
+    {
+      "type": "item",
+      "code": "stardust-weak",
+      "quantity": 1
+    }
+  ],
+  "output": {
+    "type": "item",
+    "code": "starbrine",
+    "litres": 5
+  }
+}

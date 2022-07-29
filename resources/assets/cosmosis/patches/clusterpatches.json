@@ -1,0 +1,14 @@
+[
+    {
+        "file": "game:worldgen/blockpatches",
+        "op": "add",
+        "path": "/patches/-",
+        "value": {
+            "comment": "Cosmic Shard Cluster Cluster Patches",
+            "blockCodes": ["cosmosis:cosmicshard-large1", "cosmosis:cosmicshard-large2"],
+            "quantity": {"avg": 6, "var": 4},
+            "chance": 0.005,
+            "placement": "OnSurface"
+        }
+    }
+]

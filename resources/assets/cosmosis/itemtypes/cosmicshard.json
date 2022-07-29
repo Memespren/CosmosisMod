@@ -1,0 +1,28 @@
+﻿{
+  "code": "cosmicshard",
+  "maxstacksize": 64,
+  "shape": { "base": "item/cosmicshard" },
+  "textures": {
+    "all": {
+      "base": "block/cosmicshard"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "grindingProps": {
+    "grindedStack": {"type": "item", "code": "stardust-weak"}
+  },
+  "guiTransform":{
+    "translation": {"x": 5, "y": 14, "z": 0},
+    "scale": 1.8
+  },
+  "fpHandTransform":{
+    "translation": {"x": 0, "y": -0.25, "z": 0},
+    "scale": 1.8
+  },
+  "groundTransform":{
+    "scale": 1.8
+  }
+}

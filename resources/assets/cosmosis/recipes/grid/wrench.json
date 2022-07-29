@@ -1,0 +1,20 @@
+[
+    {
+      "ingredientPattern": "_I_,_SI,I__",
+      "ingredients": {
+        "S": {
+          "type": "item",
+          "code": "cosmicshard",
+          "quantity": 1
+        },
+        "I": {
+          "type": "item",
+          "code": "game:ingot-copper",
+          "quantity": 1
+        }
+      },
+      "width": 3,
+      "height": 3,
+      "output": {"type": "item", "code": "wrench", "quantity": 1}
+    }
+  ]

@@ -1,0 +1,21 @@
+﻿{
+  "code": "cosmicshard",
+  "sealHours": 0.1,
+  "ingredients": [
+    {
+      "type": "item",
+      "code": "starbrine",
+      "litres": 10
+    },
+    {
+      "type": "item",
+      "code": "game:ore-quartz",
+      "quantity": 1
+    }
+  ],
+  "output": {
+    "type": "item",
+    "code": "cosmicshard",
+    "quantity": 4
+  }
+}

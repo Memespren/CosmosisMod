@@ -1,0 +1,15 @@
+﻿{
+    "code": "stardust",
+    "maxstacksize": 64,
+    "variantgroups": [
+      {
+        "code": "quality",
+        "states": [ "weak" ]
+      }
+    ],
+    "texture": {"base": "item/weakstardust"},
+    "creativeinventory": {
+      "cosmosis": [ "*" ],
+      "general": [ "*" ]
+    }
+}

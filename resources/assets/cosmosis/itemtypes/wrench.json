@@ -1,0 +1,33 @@
+{
+    "code": "wrench",
+    "class": "wrench",
+    "maxstacksize": 1,
+    "attributes": {
+      "rackable": true,
+      "toolrackTransform":{
+        "rotation": {"x": 90, "z": 90},
+        "translation": {"x": -0.25, "y": 0.05}
+      }
+    },
+    "shape": { "base": "item/wrench" },
+    "textures": {
+      "metal": { "base": "game:block/metal/ingot/copper" },
+      "gem": {"base": "block/cosmicshard" }
+    },
+    "creativeinventory": {
+      "cosmosis": [ "*" ],
+      "general": [ "*" ]
+    },
+    "guiTransform": {
+        "rotation": {"x": 0, "y": 0, "z": 225},
+        "translation": {"x": 0, "y": -7, "z": 0},
+        "scale": 1.8
+    },
+    "groundTransform": {
+        "scale": 1.8
+    },
+    "fpHandTransform": {
+        "rotation": {"x": 0, "y": 90, "z": 0},
+        "scale": 1.8
+    }
+  }
