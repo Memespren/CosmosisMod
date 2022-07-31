@@ -1,6 +1,6 @@
 ﻿{
   "code": "cosmicshard",
-  "sealHours": 0.1,
+  "sealHours": 18,
   "ingredients": [
     {
       "type": "item",

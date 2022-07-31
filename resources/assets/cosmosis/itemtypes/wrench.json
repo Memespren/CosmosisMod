@@ -29,5 +29,9 @@
     "fpHandTransform": {
         "rotation": {"x": 0, "y": 90, "z": 0},
         "scale": 1.8
-    }
+    },
+    "tpHandTransform": {
+      "rotation": {"x": 0, "y": 90, "z": 0},
+      "scale": 1.8
+  }
   }

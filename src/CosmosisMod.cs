@@ -1,13 +1,13 @@
-﻿using System;
-using Vintagestory.API;
-using Vintagestory.API.Common;
+﻿using Vintagestory.API.Common;
+using Vintagestory.API.Client;
+using Vintagestory.API.Server;
 
 [
     assembly: ModInfo(
         "Cosmosis", "cosmosis",
         Description = "Your friendly neighborhood cosmic storage mod",
         Authors = new []{"Memespren"},
-        Version = "0.1.0")
+        Version = "0.2.0")
 ]
 
 namespace cosmosis
@@ -17,10 +17,10 @@ namespace cosmosis
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
-            api.RegisterBlockEntityClass("transferplanet", typeof(BETransferPlanet));
             api.RegisterBlockClass("transferplanet", typeof(TransferPlanet));
             api.RegisterBlockClass("shardcluster", typeof(ShardCluster));
             api.RegisterItemClass("wrench", typeof(Wrench));
+            api.RegisterBlockEntityClass("transferplanet", typeof(BETransferPlanet));
         }
     }
 }

@@ -5,7 +5,7 @@
       "type": "mono",
       "request": "launch",
       "preLaunchTask": "Build (Debug)",
-      "program": "${env:VINTAGE_STORY}/Vintagestory.exe",
+      "program": "${env:VINTAGE_STORY_RC}/Vintagestory.exe",
       "args": [
         "--playStyle" , "creativebuilding",
         "--openWorld" , "modding test world",

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Vintagestory.API;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Server;
@@ -12,13 +10,16 @@ namespace cosmosis
     public class Wrench : Item
     {
         SkillItem[] toolModes; // Tool modes for wrench
-         List<BlockPos> highlightList; // List of blocks to highlight
+
+        List<int> netColor = new List<int>(); // {34, 7, 24};
+        List<int> invColor = new List<int>(); // {7, 7, 27};
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
 
-            highlightList = new List<BlockPos>();
+            netColor.Add(ColorUtil.ColorFromRgba(0, 255, 255, 50));
+            invColor.Add(ColorUtil.ColorFromRgba(255, 165, 0, 50));
 
             // Setup tool modes on client
             ICoreClientAPI client = api as ICoreClientAPI;
@@ -46,7 +47,12 @@ namespace cosmosis
                 {
                     Code = new AssetLocation("moveconnected"),
                     Name = "Move Connected Tile"
-                }.WithLetterIcon(client, "M")
+                }.WithLetterIcon(client, "M"),
+                new SkillItem()
+                {
+                    Code = new AssetLocation("changepriority"),
+                    Name = "Change Priority"
+                }.WithLetterIcon(client, "P")
             };
         }
 
@@ -100,6 +106,16 @@ namespace cosmosis
                     if (sPlayer != null)
                         sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Moved connection", EnumChatType.Notification);
                     break;
+
+                case 4: // Change Priority
+                    if (player.Entity.Controls.Sneak)
+                        --betp.priority;
+                    else
+                        ++betp.priority;
+                    betp.connectedNetwork.Resort();
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Priority changed to " + betp.priority, EnumChatType.Notification);
+                    break;
             }
             betp.MarkDirty();
         }
@@ -128,17 +144,25 @@ namespace cosmosis
 
             // Clear highlight list
             IPlayer player = ePlayer.Player;
-            highlightList.Clear();
-            if (player.CurrentBlockSelection != null){
 
+
+            List<BlockPos> inventoryList = new List<BlockPos>();
+            List<BlockPos> networkList = new List<BlockPos>();
+            if (player.CurrentBlockSelection != null)
+            {
                 // Add selected transfer planet to highlight list
                 BETransferPlanet betp = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as BETransferPlanet;
-                if (betp != null)
-                    highlightList.Add(betp.connectedTo);
-                    
+                if (betp != null){
+                    inventoryList.Add(betp.connectedTo);
+                    foreach (NetworkBlockEntity nbe in betp.connectedNetwork.GetConnected())
+                    {
+                        networkList.Add(nbe.Pos);
+                    }
+                }
             }
             // Update highlights
-            api.World.HighlightBlocks(player, 22, highlightList);
+            api.World.HighlightBlocks(player, 51, inventoryList, invColor);
+            api.World.HighlightBlocks(player, 52, networkList, netColor);
         }
     }
 }

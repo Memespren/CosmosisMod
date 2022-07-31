@@ -5,15 +5,15 @@
 	
 	<ItemGroup>
 		<Reference Include="VintagestoryAPI">
-			<HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
+			<HintPath>$(VINTAGE_STORY_RC)/VintagestoryAPI.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 		<Reference Include="VintagestoryAPI">
-			<HintPath>$(VINTAGE_STORY)/Mods/VSEssentials.dll</HintPath>
+			<HintPath>$(VINTAGE_STORY_RC)/Mods/VSEssentials.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 		<Reference Include="VintagestoryAPI">
-			<HintPath>$(VINTAGE_STORY)/Mods/VSSurvivalMod.dll</HintPath>
+			<HintPath>$(VINTAGE_STORY_RC)/Mods/VSSurvivalMod.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>

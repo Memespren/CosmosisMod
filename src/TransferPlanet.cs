@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Vintagestory.API;
-using Vintagestory.API.Client;
-using Vintagestory.API.Common;
+﻿using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
-using Vintagestory.GameContent;
 
 namespace cosmosis
 {
@@ -64,7 +59,7 @@ namespace cosmosis
             {
                 BETransferPlanet betp = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BETransferPlanet;
                 betp.connectedTo = blockSel.Position.Copy().Offset(blockSel.Face.Opposite);
-                betp.channel = world.BlockAccessor.GetBlock(blockSel.Position).Variant["rock"];
+                betp.channel = world.BlockAccessor.GetSolidBlock(blockSel.Position).Variant["rock"];
                 return true;
             }
             return false;
@@ -79,6 +74,7 @@ namespace cosmosis
 
             // Gets the mode and filter items
             string info = (betp.extract ? "Extract mode" : "Insert mode");
+            info += " - Priority: " + betp.priority;
             foreach (string item in betp.filter)
             {
                 info += "\n" + new AssetLocation(item).GetName();
