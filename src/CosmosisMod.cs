@@ -7,7 +7,7 @@ using Vintagestory.API.Server;
         "Cosmosis", "cosmosis",
         Description = "Your friendly neighborhood cosmic storage mod",
         Authors = new []{"Memespren"},
-        Version = "0.2.1")
+        Version = "0.3.0")
 ]
 
 namespace cosmosis

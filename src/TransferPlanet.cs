@@ -1,4 +1,5 @@
 ﻿using Vintagestory.API.Common;
+using Vintagestory.API.Client;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
@@ -18,6 +19,13 @@ namespace cosmosis
 
             // Checks if the player is holding an item
             ItemStack heldStack = byPlayer.Entity.RightHandItemSlot.Itemstack;
+
+            if (byPlayer.Entity.Controls.CtrlKey && (heldStack == null || (heldStack.Block != null && heldStack.Block.DrawType == EnumDrawType.Cube)))
+            {
+                betp.SetFacade(byPlayer.Entity.RightHandItemSlot);
+                return true;
+            }
+
             if (heldStack == null)
                 return false;
 
@@ -63,6 +71,24 @@ namespace cosmosis
                 return true;
             }
             return false;
+        }
+
+        public override Cuboidf[] GetSelectionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
+        {
+            BETransferPlanet betp = blockAccessor.GetBlockEntity(pos) as BETransferPlanet;
+            if (betp != null)
+                return betp.currentBox;
+            else
+                return base.GetSelectionBoxes(blockAccessor, pos);
+        }
+
+        public override Cuboidf[] GetCollisionBoxes(IBlockAccessor blockAccessor, BlockPos pos)
+        {
+            BETransferPlanet betp = blockAccessor.GetBlockEntity(pos) as BETransferPlanet;
+            if (betp != null)
+                return betp.currentBox;
+            else
+                return base.GetCollisionBoxes(blockAccessor, pos);
         }
 
         public override string GetPlacedBlockInfo(IWorldAccessor world, BlockPos pos, IPlayer forPlayer)

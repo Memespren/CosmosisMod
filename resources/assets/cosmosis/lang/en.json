@@ -3,8 +3,22 @@
   "item-cosmicshard": "Cosmic Shard",
   "item-stardust-weak": "Weak Stardust",
   "incontainer-item-starbrine": "Weak Starbrine",
-  "block-transferplanet-*": "Transfer Planet",
   "item-wrench": "Cosmic Wrench",
   "item-starbrine": "Weak Starbrine Portion",
-  "game:tabname-cosmosis": "Cosmosis"
+  "game:tabname-cosmosis": "Cosmosis",
+
+  "block-transferplanet-andesite": "Andesite Transfer Planet",
+  "block-transferplanet-chalk": "Chalk Transfer Planet",
+  "block-transferplanet-chert": "Chert Transfer Planet",
+  "block-transferplanet-conglomerate": "Conglomerate Transfer Planet",
+  "block-transferplanet-limestone": "Limestone Transfer Planet",
+  "block-transferplanet-claystone": "Claystone Transfer Planet",
+  "block-transferplanet-granite": "Granite Transfer Planet",
+  "block-transferplanet-sandstone": "Sandstone Transfer Planet",
+  "block-transferplanet-shale": "Shale Transfer Planet",
+  "block-transferplanet-basalt": "Basalt Transfer Planet",
+  "block-transferplanet-peridotite": "Peridotite Transfer Planet",
+  "block-transferplanet-phyllite": "Phyllite Transfer Planet",
+  "block-transferplanet-slate": "Slate Transfer Planet",
+  "block-transferplanet-bauxite": "Bauxite Transfer Planet"
 }

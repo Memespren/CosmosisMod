@@ -15,6 +15,9 @@ namespace cosmosis
 
         private float angle;
         private float yoffset;
+
+        public bool doRender;
+
         public double RenderOrder
         {
             get { return 0.5; }
@@ -30,11 +33,12 @@ namespace cosmosis
             this.api = api;
             this.pos = pos;
             this.meshref = api.Render.UploadMesh(mesh);
+            this.doRender = true;
         }
 
         public void OnRenderFrame(float dt, EnumRenderStage stage)
         {
-            if (meshref == null)
+            if (meshref == null || !doRender)
                 return;
 
             IRenderAPI rpi = api.Render;

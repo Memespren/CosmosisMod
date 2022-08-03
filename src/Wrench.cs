@@ -21,6 +21,7 @@ namespace cosmosis
             netColor.Add(ColorUtil.ColorFromRgba(0, 255, 255, 50));
             invColor.Add(ColorUtil.ColorFromRgba(255, 165, 0, 50));
 
+
             // Setup tool modes on client
             ICoreClientAPI client = api as ICoreClientAPI;
             if(client == null)

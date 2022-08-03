@@ -22,31 +22,77 @@ namespace cosmosis
 
         public List<string> filter; // List of block/item id's to filter on
 
-        public TransferPlanetRenderer renderer; // Rendering handler
+        private TransferPlanetRenderer renderer; // Rendering handler 
+
+        private FacadeInventory facadeInv; // Inventory for storing facade block
+
+        private MeshData facadeMesh = null; // Mesh for facade rendering
+
+        private Cuboidf[] smallBox; // Reference to the original hitbox
+        private Cuboidf[] bigBox; // Reference to the large hitbox
+
+        public Cuboidf[] currentBox; // The current hitbox to use
+
+
+        // Create inventory
+        public BETransferPlanet()
+        {
+            facadeInv = new FacadeInventory(null, null);
+        }
 
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
+
+            //Initialize facade inventory
+            facadeInv.LateInitialize("tpfacade-" + Pos.X + "/" + Pos.Y + "/" + Pos.Z, api);
+
+            smallBox = Block.CollisionBoxes;
+            bigBox = new Cuboidf[]{Block.DefaultCollisionBox};
+            currentBox = smallBox;
+
+            //Handle client initialization
             if (api.Side == EnumAppSide.Client)
             {
-                //Generate Mesh
+                //Generate planet mesh for renderer
                 if (baseMesh == null){
                     Block block = api.World.BlockAccessor.GetSolidBlock(Pos);
                     if (block.BlockId != 0)
                     {
                         MeshData mesh;
-                        ITesselatorAPI mesher = ((ICoreClientAPI)api).Tesselator;
+                        ITesselatorAPI mesher = (api as ICoreClientAPI).Tesselator;
                         mesher.TesselateShape(block, Shape.TryGet(Api, "cosmosis:shapes/block/planet.json"), out mesh);
                         baseMesh = mesh;
                     }
                 }
-                //Register Renderer
+                //Register renderer
                 renderer = new TransferPlanetRenderer(api as ICoreClientAPI, Pos, baseMesh);
                 (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "transferplanet");
+                (api as ICoreClientAPI).Event.AfterActiveSlotChanged += OnSlotChanged;
             }
+            ApplyFacade();
+
             RegisterGameTickListener(OnGameTick, 1000);
+
             if (filter == null)
                 filter = new List<string>();
+
+        }
+
+        public void OnSlotChanged(ActiveSlotChangeEventArgs args)
+        {
+            if (Api is ICoreClientAPI)
+            {
+                ItemStack selected = (Api as ICoreClientAPI).World.Player.InventoryManager.ActiveHotbarSlot.Itemstack;
+                if (selected == null || (selected.Collectible as Wrench) == null)
+                {
+                    ShowFacade();
+                }
+                else
+                {
+                    HideFacade();
+                }
+            }
         }
         public void OnGameTick(float dt)
         {
@@ -118,14 +164,67 @@ namespace cosmosis
             }
         }
 
+        public void SetFacade(ItemSlot fromSlot)
+        {
+            if (facadeInv[0].Itemstack != null)
+                Api.World.SpawnItemEntity(facadeInv[0].TakeOut(1), Pos.ToVec3d());
+
+            if (fromSlot.Itemstack != null)
+                facadeInv[0].Itemstack = fromSlot.TakeOut(1);
+
+            ApplyFacade();
+            fromSlot.MarkDirty();
+            facadeInv[0].MarkDirty();
+        }
+
+        public void ApplyFacade()
+        {
+            if (facadeInv[0].Itemstack != null)
+            {
+                if (Api.Side == EnumAppSide.Client)
+                {
+                    //Generate Mesh
+                    MeshData mesh;
+                    ITesselatorAPI mesher = (Api as ICoreClientAPI).Tesselator;
+                    mesher.TesselateShape("test", Shape.TryGet(Api, "game:shapes/block/basic/cube.json"), out mesh, mesher.GetTexSource(facadeInv[0].Itemstack.Block));
+                    facadeMesh = mesh;
+                    renderer.doRender = false;
+                }
+                currentBox = bigBox;
+            }
+            else
+            {
+                if (Api.Side == EnumAppSide.Client)
+                {
+                    facadeMesh = null;
+                    renderer.doRender = true;
+                }
+                currentBox = smallBox;
+            }
+
+            Api.World.BlockAccessor.MarkBlockDirty(Pos);
+        }
+
+        public void HideFacade()
+        {
+            renderer.doRender = true;
+            MarkDirty(true);
+        }
+
+        public void ShowFacade()
+        {
+            renderer.doRender = (facadeMesh == null);
+            MarkDirty(true);
+        }
+
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
         {
             if (Block == null)
                 return false;
 
-            // mesher.AddMeshData(this.baseMesh.Clone()
-            // .Translate(0, yoffset, 0)
-            // .Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0, angle*GameMath.DEG2RAD, 0));
+            if (facadeMesh != null && !renderer.doRender){
+                mesher.AddMeshData(facadeMesh.Clone());
+            }
             return true;
         }
 
@@ -157,6 +256,9 @@ namespace cosmosis
             {
                 tree.SetString("filter" + i, filter[i]);
             }
+            ITreeAttribute facadeTree = new TreeAttribute();
+            facadeInv.ToTreeAttributes(facadeTree);
+            tree["facade"] = facadeTree;
         }
 
         // Loads attributes from the tree
@@ -172,6 +274,17 @@ namespace cosmosis
             {
                 filter.Add(tree.GetString("filter" + i));
             }
+            facadeInv.FromTreeAttributes(tree.GetTreeAttribute("facade"));
+            if (Api != null)
+            {
+                facadeInv.AfterBlocksLoaded(Api.World);
+            }
+        }
+
+        public override void OnBlockBroken(IPlayer byPlayer = null)
+        {
+            base.OnBlockBroken(byPlayer);
+            facadeInv.DropAll(Pos.ToVec3d());
         }
 
         public override void OnBlockRemoved()
@@ -184,6 +297,14 @@ namespace cosmosis
         {
             base.OnBlockUnloaded();
             renderer?.Dispose();
+        }
+
+        ~BETransferPlanet()
+        {
+            if (Api is ICoreClientAPI)
+            {
+                (Api as ICoreClientAPI).Event.AfterActiveSlotChanged -= OnSlotChanged;
+            }
         }
     }
 }
