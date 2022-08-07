@@ -1,14 +1,19 @@
+using System;
 using System.Collections.Generic;
+using Vintagestory.API.Common;
 
 namespace cosmosis
 {
     public class Network
     {
+        public ICoreAPI api;
+        public event Action ContentsModified;
         private List<NetworkBlockEntity> connected; // List of NBEs on the network
 
         // Creates a new network with one connected NBE
         public Network(NetworkBlockEntity first)
         {
+            api = first.Api;
             connected = new List<NetworkBlockEntity>();
             Add(first);
         }
@@ -57,6 +62,11 @@ namespace cosmosis
         public List<NetworkBlockEntity> GetConnected()
         {
             return connected;
+        }
+
+        public void OnInventoryChanged(float dt)
+        {
+            ContentsModified?.Invoke();
         }
     }
 }

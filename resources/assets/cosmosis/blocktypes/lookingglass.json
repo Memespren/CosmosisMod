@@ -1,0 +1,46 @@
+{
+    "code": "lookingglass",
+    "class": "lookingglass",
+    "entityClass": "lookingglass",
+    "behaviors": [{"name": "HorizontalAttachable", "properties": {"handleDrops": false}}],
+    "variantgroups": [
+        {"loadFromProperties": "abstract/horizontalorientation"}
+    ],
+    "shapebytype": {
+        "*-north": { "base": "block/mirror", "rotateY": 90 },
+        "*-east": { "base": "block/mirror", "rotateY": 0 },
+        "*-south": { "base": "block/mirror", "rotateY": 270 },
+        "*-west": { "base": "block/mirror", "rotateY": 180 }
+    },
+    "textures": {
+      "gold": { "base": "game:block/metal/plate/gold" },
+      "glass": { "base": "block/mirror" }
+    },
+    "creativeinventory": {
+      "cosmosis": [ "*-east" ],
+      "general": [ "*-east" ]
+    },
+    "drops": [
+		{
+			"type": "block",
+			"code": "lookingglass-east"
+		}
+	],
+    "collisionbox": null,
+    "selectionbox": {
+        "x1": 0, "y1": 0.0625, "z1": 0.0625,
+        "x2": 0.1875, "y2": 0.9375, "z2": 0.9375,
+        "rotateYByType": {
+            "*-east": 180,
+			"*-south": 90,
+			"*-west": 0,
+			"*-north": 270
+        } 
+    },
+    "resistance": 2,
+    "drawtype": "json",
+    "sidesolid": { "all": false },
+    "sideopaque": { "all": false },
+    "sideao": { "all": false },
+    "lightAbsorption": 0
+  }

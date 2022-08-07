@@ -72,6 +72,9 @@ namespace cosmosis
             }
             ApplyFacade();
 
+            if (connectedTo != null)
+                SetConnectedInventory(connectedTo);
+
             RegisterGameTickListener(OnGameTick, 1000);
 
             if (filter == null)
@@ -139,6 +142,8 @@ namespace cosmosis
                             {
                                 fromSlot.MarkDirty();
                                 toSlot.MarkDirty();
+                                MarkConnectedDirty();
+                                next.MarkConnectedDirty();
                             }
 
                             // End the transfer if the stack is empty or the max items are moved
@@ -236,6 +241,33 @@ namespace cosmosis
                 return null;
             else
                 return container.Inventory;
+        }
+
+        public void SetConnectedInventory(BlockPos pos)
+        {
+            InventoryBase inv;
+            if (connectedTo != null)
+            {
+                inv = getConnectedInventory();
+                if (inv != null)
+                    inv.SlotModified -= OnContainerChanged;
+            }
+            connectedTo = pos;
+            inv = getConnectedInventory();
+            if (inv != null)
+                inv.SlotModified += OnContainerChanged;
+        }
+
+        public void MarkConnectedDirty()
+        {
+             BlockEntityContainer container = Api.World.BlockAccessor.GetBlockEntity(connectedTo) as BlockEntityContainer;
+            if (container != null)
+                container.MarkDirty();
+        }
+
+        public void OnContainerChanged(int index)
+        {
+            Api.Event.RegisterCallback(connectedNetwork.OnInventoryChanged, 100);
         }
 
         // Checks if an item can be processed

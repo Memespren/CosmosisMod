@@ -1,0 +1,30 @@
+[
+    {
+      "ingredientPattern": "TSG,PSG,TSG",
+      "ingredients": {
+        "T": {
+          "type": "block",
+          "code": "transferplanet-*",
+          "quantity": 1
+        },
+        "P": {
+          "type": "item",
+          "code": "game:metalplate-gold",
+          "quantity": 1
+        },
+        "S": {
+            "type": "item",
+            "code": "cosmicshard",
+            "quantity": 3
+        },
+        "G": {
+            "type": "item",
+            "code": "game:clearquartz",
+            "quantity": 1
+        }
+      },
+      "width": 3,
+      "height": 3,
+      "output": {"type": "block", "code": "lookingglass-east", "quantity": 1}
+    }
+  ]

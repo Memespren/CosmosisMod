@@ -4,6 +4,10 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+	<Reference Include="protobuf-net">
+			<HintPath>$(VINTAGE_STORY_RC)/Lib/protobuf-net.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 		<Reference Include="VintagestoryAPI">
 			<HintPath>$(VINTAGE_STORY_RC)/VintagestoryAPI.dll</HintPath>
 			<Private>false</Private>

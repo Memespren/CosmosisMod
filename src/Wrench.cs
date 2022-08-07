@@ -103,7 +103,7 @@ namespace cosmosis
                     break;
 
                 case 3: // Change connection
-                    betp.connectedTo = betp.Pos.Copy().Offset(player.CurrentBlockSelection.Face.Opposite);
+                    betp.SetConnectedInventory(betp.Pos.Copy().Offset(player.CurrentBlockSelection.Face.Opposite));
                     if (sPlayer != null)
                         sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Moved connection", EnumChatType.Notification);
                     break;

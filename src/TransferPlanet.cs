@@ -66,7 +66,7 @@ namespace cosmosis
             if(base.TryPlaceBlock(world, byPlayer, itemstack, blockSel, ref failureCode))
             {
                 BETransferPlanet betp = world.BlockAccessor.GetBlockEntity(blockSel.Position) as BETransferPlanet;
-                betp.connectedTo = blockSel.Position.Copy().Offset(blockSel.Face.Opposite);
+                betp.SetConnectedInventory(blockSel.Position.Copy().Offset(blockSel.Face.Opposite));
                 betp.channel = world.BlockAccessor.GetSolidBlock(blockSel.Position).Variant["rock"];
                 return true;
             }
