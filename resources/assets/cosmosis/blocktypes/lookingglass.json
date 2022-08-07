@@ -38,6 +38,12 @@
         } 
     },
     "resistance": 2,
+    "blockmaterial": "Glass",
+    "sounds": {
+      "place": "game:player/buildhigh",
+      "break": "game:block/glass",
+      "hit": "game:block/glass"
+    },
     "drawtype": "json",
     "sidesolid": { "all": false },
     "sideopaque": { "all": false },

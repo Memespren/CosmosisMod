@@ -56,7 +56,7 @@ namespace cosmosis
             {
                 //Generate planet mesh for renderer
                 if (baseMesh == null){
-                    Block block = api.World.BlockAccessor.GetSolidBlock(Pos);
+                    Block block = api.World.BlockAccessor.GetBlock(Pos);
                     if (block.BlockId != 0)
                     {
                         MeshData mesh;
