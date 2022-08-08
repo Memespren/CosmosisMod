@@ -267,7 +267,8 @@ namespace cosmosis
 
         public void OnContainerChanged(int index)
         {
-            Api.Event.RegisterCallback(connectedNetwork.OnInventoryChanged, 100);
+            if (connectedNetwork != null)
+                RegisterDelayedCallback(connectedNetwork.OnInventoryChanged, 100);
         }
 
         // Checks if an item can be processed
@@ -336,6 +337,11 @@ namespace cosmosis
             if (Api is ICoreClientAPI)
             {
                 (Api as ICoreClientAPI).Event.AfterActiveSlotChanged -= OnSlotChanged;
+            }
+
+            if (getConnectedInventory() != null)
+            {
+                getConnectedInventory().SlotModified -= OnContainerChanged;
             }
         }
     }

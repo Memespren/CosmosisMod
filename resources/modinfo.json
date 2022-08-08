@@ -4,7 +4,7 @@
   "name": "Cosmosis",
   "authors": ["Memespren"],
   "description": "Your friendly neighborhood cosmic storage mod",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "dependencies": {
     "game": "1.17.0-rc.4"
   }
