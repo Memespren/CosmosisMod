@@ -17,7 +17,7 @@ namespace cosmosis
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-            connectToNetwork();
+            FindNetwork();
         }
 
         public override void OnBlockUnloaded()
@@ -58,7 +58,7 @@ namespace cosmosis
         // Joins a network if found
         // Merges multiple networks if found
         // Creates a new network if needed
-        public void connectToNetwork()
+        public void FindNetwork()
         {
             foreach(NetworkBlockEntity nbe in GetNeighbors())
             {
@@ -82,6 +82,11 @@ namespace cosmosis
                 //Api.Logger.Debug("Creating new network");
                 Network net = new Network(this);
             }
+        }
+
+        public virtual void ConnectToNetwork(Network net)
+        {
+            connectedNetwork = net;
         }
 
         // Saves attributes to the tree

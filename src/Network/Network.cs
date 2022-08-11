@@ -23,8 +23,8 @@ namespace cosmosis
         {
             if (nbe.connectedNetwork != this)
             {
-                nbe.connectedNetwork = this;
                 connected.Add(nbe);
+                nbe.ConnectToNetwork(this);
                 Resort();
             }
         }
@@ -54,7 +54,7 @@ namespace cosmosis
             foreach(NetworkBlockEntity nbe in connected)
             {
                 if (nbe != toRemove)
-                    nbe.connectToNetwork();
+                    nbe.FindNetwork();
             }
         }
 

@@ -23,6 +23,17 @@ namespace cosmosis
             connectedNetwork.ContentsModified += ReloadGui;
         }
 
+        public override void ConnectToNetwork(Network net)
+        {
+            if (connectedNetwork != null)
+                connectedNetwork.ContentsModified -= ReloadGui;
+
+            base.ConnectToNetwork(net);
+
+            if (connectedNetwork != null)
+                connectedNetwork.ContentsModified += ReloadGui;
+        }
+
         public void OpenGUI()
         {
             BuildInventory();
@@ -145,6 +156,7 @@ namespace cosmosis
 
         public void ReloadGui()
         {
+            Api.Logger.Debug("RELOAD");
             BuildInventory();
             MarkDirty();
         }

@@ -9,7 +9,7 @@ using Vintagestory.GameContent;
 
 namespace cosmosis
 {
-    public class BETransferPlanet : NetworkBlockEntity
+    public class BETransferPlanet : NetworkBlockEntity, IFacadable
     {
 
         public bool extract = false; // If this planet should insert or extract
@@ -191,7 +191,7 @@ namespace cosmosis
                     //Generate Mesh
                     MeshData mesh;
                     ITesselatorAPI mesher = (Api as ICoreClientAPI).Tesselator;
-                    mesher.TesselateShape("test", Shape.TryGet(Api, "game:shapes/block/basic/cube.json"), out mesh, mesher.GetTexSource(facadeInv[0].Itemstack.Block));
+                    mesher.TesselateShape("facade", Shape.TryGet(Api, "game:shapes/block/basic/cube.json"), out mesh, mesher.GetTexSource(facadeInv[0].Itemstack.Block));
                     facadeMesh = mesh;
                     renderer.doRender = false;
                 }
