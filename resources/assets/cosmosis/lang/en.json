@@ -21,5 +21,20 @@
   "block-transferplanet-peridotite": "Peridotite Transfer Planet",
   "block-transferplanet-phyllite": "Phyllite Transfer Planet",
   "block-transferplanet-slate": "Slate Transfer Planet",
-  "block-transferplanet-bauxite": "Bauxite Transfer Planet"
+  "block-transferplanet-bauxite": "Bauxite Transfer Planet",
+
+  "block-liquidplanet-andesite": "Andesite Liquid Transfer Planet",
+  "block-liquidplanet-chalk": "Chalk Liquid Transfer Planet",
+  "block-liquidplanet-chert": "Chert Liquid Transfer Planet",
+  "block-liquidplanet-conglomerate": "Conglomerate Liquid Transfer Planet",
+  "block-liquidplanet-limestone": "Limestone Liquid Transfer Planet",
+  "block-liquidplanet-claystone": "Claystone Liquid Transfer Planet",
+  "block-liquidplanet-granite": "Granite Liquid Transfer Planet",
+  "block-liquidplanet-sandstone": "Sandstone Liquid Transfer Planet",
+  "block-liquidplanet-shale": "Shale Liquid Transfer Planet",
+  "block-liquidplanet-basalt": "Basalt Liquid Transfer Planet",
+  "block-liquidplanet-peridotite": "Peridotite Liquid Transfer Planet",
+  "block-liquidplanet-phyllite": "Phyllite Liquid Transfer Planet",
+  "block-liquidplanet-slate": "Slate Liquid Transfer Planet",
+  "block-liquidplanet-bauxite": "Bauxite Liquid Transfer Planet"
 }

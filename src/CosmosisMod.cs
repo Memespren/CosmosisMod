@@ -11,7 +11,7 @@ using Vintagestory.API.Datastructures;
         "Cosmosis", "cosmosis",
         Description = "Your friendly neighborhood cosmic storage mod",
         Authors = new []{"Memespren"},
-        Version = "0.4.3")
+        Version = "0.5.0")
 ]
 
 namespace cosmosis
@@ -28,9 +28,11 @@ namespace cosmosis
             api.RegisterBlockClass("transferplanet", typeof(TransferPlanet));
             api.RegisterBlockClass("shardcluster", typeof(ShardCluster));
             api.RegisterBlockClass("lookingglass", typeof(LookingGlass));
+            api.RegisterBlockClass("liquidplanet", typeof(LiquidPlanet));
             api.RegisterItemClass("wrench", typeof(Wrench));
             api.RegisterBlockEntityClass("transferplanet", typeof(BETransferPlanet));
             api.RegisterBlockEntityClass("lookingglass", typeof(BELookingGlass));
+            api.RegisterBlockEntityClass("liquidplanet", typeof(BELiquidPlanet));
 
             api.Network.RegisterChannel("cosmosis:itemrequest").RegisterMessageType(typeof(ItemRequestPacket));
         }

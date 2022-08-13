@@ -1,0 +1,43 @@
+﻿{
+  "code": "liquidplanet",
+  "class": "liquidplanet",
+  "entityClass": "liquidplanet",
+  "variantgroups": [
+    {"loadFromProperties": "game:block/rock"}
+  ],
+  "shape": {
+    "base": "block/planet"
+  },
+  "textures": {
+    "all": {
+      "base": "game:block/stone/polishedrock/{rock}"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "requiredMiningTier": 2,
+	"resistance": 3,
+  "drawtype": "json",
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "sideao": { "all": false },
+  "lightAbsorption": 0,
+  "guiTransform":{
+    "scale": 2
+  },
+  "groundTransform":{
+    "scale": 2
+  },
+  "selectionbox":{
+    "x1": 0.25, "x2": 0.75,
+    "y1": 0.25, "y2": 0.75,
+    "z1": 0.25, "z2": 0.75
+  },
+  "collisionbox":{
+    "x1": 0.25, "x2": 0.75,
+    "y1": 0.25, "y2": 0.75,
+    "z1": 0.25, "z2": 0.75
+  }
+}

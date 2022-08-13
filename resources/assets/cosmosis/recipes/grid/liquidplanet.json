@@ -1,0 +1,21 @@
+﻿[
+  {
+    "ingredientPattern": "RRR,RSR,RRR",
+    "ingredients": {
+      "R": {
+        "type": "block",
+        "code": "game:rockpolished-*",
+        "name": "rock",
+        "quantity": 1
+      },
+      "S": {
+        "type": "item",
+        "code": "stardust-weak",
+        "quantity": 8
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {"type": "block", "code": "liquidplanet-{rock}", "quantity": 1}
+  }
+]

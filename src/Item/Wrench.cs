@@ -4,6 +4,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Config;
+using Vintagestory.GameContent;
 
 namespace cosmosis
 {
@@ -121,6 +122,59 @@ namespace cosmosis
             betp.MarkDirty();
         }
 
+         public void liquidPlanetInteract(IPlayer player, BELiquidPlanet belp)
+        {
+            IServerPlayer sPlayer = player as IServerPlayer;
+
+            //Switch on tool modes
+            switch(player.InventoryManager.ActiveHotbarSlot.Itemstack.Attributes.GetInt("toolMode", 0))
+            {
+                case 0: // Toggle modes
+                    belp.extract = !belp.extract;
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, (belp.extract ? "Extract" : "Insert") + " mode set", EnumChatType.Notification);
+                    break;
+                
+                case 1: // Clear filter
+                    belp.filter.Clear();
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Filter cleared", EnumChatType.Notification);
+                    break;
+
+                case 2: // Take snapshot
+                    ILiquidInterface container = belp.GetLiquidContainer();
+                    if (container != null)
+                    {
+                        if (container.GetContent(belp.connectedTo) != null)
+                        {
+                            string entry = container.GetContent(belp.connectedTo).Collectible.Code.ToString();
+                            if (!belp.filter.Contains(entry))
+                                belp.filter.Add(entry);
+                        }
+                    }
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Contents added to filter", EnumChatType.Notification);
+                    break;
+
+                case 3: // Change connection
+                    belp.SetConnectedInventory(belp.Pos.Copy().Offset(player.CurrentBlockSelection.Face.Opposite));
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Moved connection", EnumChatType.Notification);
+                    break;
+
+                case 4: // Change Priority
+                    if (player.Entity.Controls.Sneak)
+                        --belp.priority;
+                    else
+                        ++belp.priority;
+                    belp.connectedNetwork.Resort();
+                    if (sPlayer != null)
+                        sPlayer.SendMessage(GlobalConstants.InfoLogChatGroup, "Priority changed to " + belp.priority, EnumChatType.Notification);
+                    break;
+            }
+            belp.MarkDirty();
+        }
+
         public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
         {
             return toolModes;
@@ -156,6 +210,16 @@ namespace cosmosis
                 if (betp != null){
                     inventoryList.Add(betp.connectedTo);
                     foreach (NetworkBlockEntity nbe in betp.connectedNetwork.GetConnected())
+                    {
+                        networkList.Add(nbe.Pos);
+                    }
+                }
+
+                BELiquidPlanet belp = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as BELiquidPlanet;
+                if (belp != null)
+                {
+                    inventoryList.Add(belp.connectedTo);
+                    foreach(NetworkBlockEntity nbe in belp.connectedNetwork.GetConnected())
                     {
                         networkList.Add(nbe.Pos);
                     }

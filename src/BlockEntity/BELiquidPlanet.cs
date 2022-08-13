@@ -9,12 +9,12 @@ using Vintagestory.GameContent;
 
 namespace cosmosis
 {
-    public class BETransferPlanet : NetworkBlockEntity, IFacadable
+    public class BELiquidPlanet : NetworkBlockEntity, IFacadable
     {
 
         public bool extract = false; // If this planet should insert or extract
 
-        public int stackMoveSize = 4; // Items to move per transfer
+        public int stackMoveSize = 2; // Items to move per transfer
 
         public string channel = ""; // Channel to interact with
 
@@ -22,7 +22,7 @@ namespace cosmosis
 
         public List<string> filter; // List of block/item id's to filter on
 
-        private TransferPlanetRenderer renderer; // Rendering handler 
+        private LiquidPlanetRenderer renderer; // Rendering handler 
 
         private FacadeInventory facadeInv; // Inventory for storing facade block
 
@@ -35,7 +35,7 @@ namespace cosmosis
 
 
         // Create inventory
-        public BETransferPlanet()
+        public BELiquidPlanet()
         {
             facadeInv = new FacadeInventory(null, null);
         }
@@ -66,14 +66,11 @@ namespace cosmosis
                     }
                 }
                 //Register renderer
-                renderer = new TransferPlanetRenderer(api as ICoreClientAPI, Pos, baseMesh);
-                (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "transferplanet");
+                renderer = new LiquidPlanetRenderer(api as ICoreClientAPI, Pos, baseMesh);
+                (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "liquidplanet");
                 (api as ICoreClientAPI).Event.AfterActiveSlotChanged += OnSlotChanged;
             }
             ApplyFacade();
-
-            if (connectedTo != null)
-                SetConnectedInventory(connectedTo);
 
             RegisterGameTickListener(OnGameTick, 1000);
 
@@ -97,75 +94,67 @@ namespace cosmosis
                 }
             }
         }
+
         public void OnGameTick(float dt)
         {
-            // Ensure the transfer only occurs on the server
-            if (!(Api is ICoreServerAPI))
+            if (!(Api is ICoreServerAPI) || !extract)
                 return;
 
-            // Only process if it can extract from a valid inventory
-            InventoryBase inv = getConnectedInventory();
-            if (!extract || inv == null || inv.Empty || connectedNetwork == null)
-                return;
-
-            
-            //Get list of entities on network
-            List<NetworkBlockEntity> connected = connectedNetwork.GetConnected();
-            int itemsMoved = 0;
-
-            // Check each item slot in inventory
-            foreach (ItemSlot fromSlot in inv)
+            ItemStack sendStack = null;
+            ILiquidSource source = GetLiquidContainer() as ILiquidSource;
+            WaterTightContainableProps props = GetBlockProps();
+            if (source != null)
             {
-                // Continue only if the item exists, can be taken, and is in the filter
-                if (fromSlot != null && !fromSlot.Empty && !(fromSlot is ItemSlotLiquidOnly) && fromSlot.CanTake() && ItemInFilter(fromSlot.Itemstack.Collectible.Code.ToString()))
-                {
-                    // Loop through all connected entities
-                    foreach(NetworkBlockEntity nbe in connected)
-                    {
-                        // Check if it is a transfer planet on the same network
-                        BETransferPlanet next = nbe as BETransferPlanet;
-                        if (next == null || next.channel != channel)
-                            continue;
-
-                        // Skip this planet if it cannot insert into a valid inventory
-                        if (next.extract || next.getConnectedInventory() == null || !next.ItemInFilter(fromSlot.Itemstack.Collectible.Code.ToString()))
-                            continue;
-
-                        // Find a recieving slot and transfer the items
-                        ItemSlot toSlot = next.getConnectedInventory().GetAutoPushIntoSlot(BlockFacing.UP, fromSlot);
-                        if (toSlot != null && toSlot.CanHold(fromSlot))
-                        {    
-                            // Move items
-                            int temp = fromSlot.TryPutInto(Api.World, toSlot, Math.Min(fromSlot.StackSize, stackMoveSize));
-                            itemsMoved += temp;
-                            if (temp > 0)
-                            {
-                                fromSlot.MarkDirty();
-                                toSlot.MarkDirty();
-                                MarkConnectedDirty();
-                                next.MarkConnectedDirty();
-                            }
-
-                            // End the transfer if the stack is empty or the max items are moved
-                            if (fromSlot.StackSize <= 0 || itemsMoved >= stackMoveSize)
-                                return;
-                        }
-                    }
-                }
+                sendStack = source.GetContent(connectedTo);
             }
-        }
+            else if (props != null)
+            {
+                props.WhenFilled.Stack.Resolve(Api.World, "liquidplanet");
+                sendStack = props.WhenFilled.Stack.ResolvedItemstack.Clone();
+                sendStack.StackSize = 1000;
+            }
 
+            if (sendStack == null)
+                return;
+
+            foreach(NetworkBlockEntity nbe in connectedNetwork.GetConnected())
+            {
+                // Check if it is a transfer planet on the same network
+                BELiquidPlanet next = nbe as BELiquidPlanet;
+                if (next == null || next.channel != channel)
+                    continue;
+
+                // Skip this planet if it cannot insert into a valid inventory
+                if (next.extract || next.GetLiquidContainer() == null || !next.ItemInFilter(sendStack.Collectible.Code.ToString()))
+                    continue;
+
+                ILiquidSink sink = next.GetLiquidContainer() as ILiquidSink;
+                if (sink != null && !sink.IsFull(next.connectedTo))
+                {
+                    int moved = sink.TryPutLiquid(next.connectedTo, sendStack, stackMoveSize);
+                    if (source != null && moved > 0)
+                    {
+                        source.TryTakeContent(connectedTo, moved);
+                    }
+                    if (moved > 0)
+                    {
+                        return;
+                    }
+                    
+                }
+            }   
+        }
         MeshData baseMesh
         {
             get
             {
                 object value = null;
-                Api.ObjectCache.TryGetValue("cosmosis:transferplanet-" + Block.Variant["rock"], out value);
+                Api.ObjectCache.TryGetValue("cosmosis:liquidplanet-" + Block.Variant["rock"], out value);
                 return (MeshData)value;
             }
             set
             {
-                Api.ObjectCache["cosmosis:transferplanet-" + Block.Variant["rock"]] = value;
+                Api.ObjectCache["cosmosis:liquidplanet-" + Block.Variant["rock"]] = value;
             }
         }
 
@@ -233,29 +222,21 @@ namespace cosmosis
             return true;
         }
 
-        // Gets the inventory this planet interfaces with
-        public InventoryBase getConnectedInventory()
+        public ILiquidInterface GetLiquidContainer()
         {
-            BlockEntityContainer container = Api.World.BlockAccessor.GetBlockEntity(connectedTo) as BlockEntityContainer;
-            if (container == null)
-                return null;
-            else
-                return container.Inventory;
+            ILiquidInterface container = Api.World.BlockAccessor.GetBlock(connectedTo) as ILiquidInterface;
+            return container;
+        }
+
+        public WaterTightContainableProps GetBlockProps()
+        {
+            WaterTightContainableProps props = Api.World.BlockAccessor.GetBlock(connectedTo).Attributes?["waterTightContainerProps"]?.AsObject<WaterTightContainableProps>();
+            return props;
         }
 
         public void SetConnectedInventory(BlockPos pos)
         {
-            InventoryBase inv;
-            if (connectedTo != null)
-            {
-                inv = getConnectedInventory();
-                if (inv != null)
-                    inv.SlotModified -= OnContainerChanged;
-            }
             connectedTo = pos;
-            inv = getConnectedInventory();
-            if (inv != null)
-                inv.SlotModified += OnContainerChanged;
         }
 
         public void MarkConnectedDirty()
@@ -263,12 +244,6 @@ namespace cosmosis
              BlockEntityContainer container = Api.World.BlockAccessor.GetBlockEntity(connectedTo) as BlockEntityContainer;
             if (container != null)
                 container.MarkDirty();
-        }
-
-        public void OnContainerChanged(int index)
-        {
-            if (connectedNetwork != null)
-                RegisterDelayedCallback(connectedNetwork.OnInventoryChanged, 100);
         }
 
         // Checks if an item can be processed
@@ -330,19 +305,6 @@ namespace cosmosis
         {
             base.OnBlockUnloaded();
             renderer?.Dispose();
-        }
-
-        ~BETransferPlanet()
-        {
-            if (Api is ICoreClientAPI)
-            {
-                (Api as ICoreClientAPI).Event.AfterActiveSlotChanged -= OnSlotChanged;
-            }
-
-            if (getConnectedInventory() != null)
-            {
-                getConnectedInventory().SlotModified -= OnContainerChanged;
-            }
         }
     }
 }
