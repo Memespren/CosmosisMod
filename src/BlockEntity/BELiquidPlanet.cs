@@ -114,7 +114,7 @@ namespace cosmosis
                 sendStack.StackSize = 1000;
             }
 
-            if (sendStack == null)
+            if (sendStack == null || ItemInFilter(sendStack.Collectible.Code.ToString()))
                 return;
 
             foreach(NetworkBlockEntity nbe in connectedNetwork.GetConnected())
