@@ -31,18 +31,29 @@ namespace cosmosis
 
         public void NodeRemoved(EnergyBlockEntity node)
         {
-            source.RemovePath(this);
+            Delete();
             sink.FindPath();
         }
 
         public void SinkRemoved(EnergyBlockEntity sink)
         {
-            source.RemovePath(this);
+            Delete();
         }
 
         public void SourceRemoved(EnergyBlockEntity source)
         {
+            Delete();
+        }
 
+        public void Delete()
+        {
+            source.RemovePath(this);
+            source.OnRemoved -= SourceRemoved;
+            sink.OnRemoved -= SinkRemoved;
+            foreach (EnergyNode node in nodes)
+            {
+                node.OnRemoved -= NodeRemoved;
+            }
         }
 
         public void Align()
