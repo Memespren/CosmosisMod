@@ -9,7 +9,7 @@ using Vintagestory.GameContent;
 
 namespace cosmosis
 {
-    public class BETransferPlanet : NetworkBlockEntity, IFacadable
+    public class BETransferPlanet : NetworkBlockEntity, IFacadable, IHighlightable
     {
 
         public bool extract = false; // If this planet should insert or extract
@@ -256,6 +256,12 @@ namespace cosmosis
             inv = getConnectedInventory();
             if (inv != null)
                 inv.SlotModified += OnContainerChanged;
+        }
+
+        public override void GetHighlightedBlocks(ref List<BlockPos> blueList, ref List<BlockPos> orangeList)
+        {
+            base.GetHighlightedBlocks(ref blueList, ref orangeList);
+            orangeList.Add(connectedTo);
         }
 
         public void MarkConnectedDirty()

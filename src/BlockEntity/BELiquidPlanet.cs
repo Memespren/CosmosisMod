@@ -211,6 +211,12 @@ namespace cosmosis
             MarkDirty(true);
         }
 
+        public override void GetHighlightedBlocks(ref List<BlockPos> blueList, ref List<BlockPos> orangeList)
+        {
+            base.GetHighlightedBlocks(ref blueList, ref orangeList);
+            orangeList.Add(connectedTo);
+        }
+
         public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
         {
             if (Block == null)

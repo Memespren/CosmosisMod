@@ -42,6 +42,8 @@ namespace cosmosis
 
         private float distance = 1;
 
+        private float targetDistance = 1;
+
         public double RenderOrder
         {
             get { return 0.5; }
@@ -144,6 +146,7 @@ namespace cosmosis
                 .Translate(-0.5f, 0.75f/distance, -0.5f)
                 .Values;
 
+                prog.RgbaLightIn = new Vec4f(0, 1, 1, 0.8f);
                 prog.RgbaGlowIn = new Vec4f(0, 1, 1, 0.8f);
                 prog.ExtraGlow = 200;
 
@@ -163,6 +166,7 @@ namespace cosmosis
 
         private void updateTurn(float dt)
         {
+            distance = targetDistance;
             recoil = GameMath.Lerp(recoil, 0, 16*dt);
             rot = GameMath.Lerp(rot, targetRot, 32*dt);
             pitch = GameMath.Lerp(pitch, targetPitch, 32*dt);
@@ -211,7 +215,7 @@ namespace cosmosis
 
             Vec3d blockpos = pos.ToVec3d().Add(0.01, 0.01, 0.01);
 
-            distance = blockpos.DistanceTo(targetPos) - 1;
+            targetDistance = blockpos.DistanceTo(targetPos) - 1;
 
             Vec3d fromPos = new Vec3d();
             Vec3d toPos = new Vec3d();

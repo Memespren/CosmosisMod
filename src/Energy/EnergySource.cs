@@ -43,6 +43,11 @@ namespace cosmosis
             }
         }
 
+        public override bool CheckNeighbor(EnergyBlockEntity other)
+        {
+            return (Pos.DistanceTo(other.Pos) <= 1);
+        }
+
         public void AddPath(EnergySink sink, LinkedList<EnergyNode> nodes)
         {
             if(!paths.ContainsKey(sink) || nodes.Count < paths[sink].Length)

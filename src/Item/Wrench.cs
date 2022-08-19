@@ -201,42 +201,15 @@ namespace cosmosis
             IPlayer player = ePlayer.Player;
 
 
-            List<BlockPos> inventoryList = new List<BlockPos>();
-            List<BlockPos> networkList = new List<BlockPos>();
+            List<BlockPos> blueList = new List<BlockPos>();
+            List<BlockPos> orangeList = new List<BlockPos>();
             if (player.CurrentBlockSelection != null)
             {
-                // Add selected transfer planet to highlight list
-                BETransferPlanet betp = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as BETransferPlanet;
-                if (betp != null){
-                    inventoryList.Add(betp.connectedTo);
-                    foreach (NetworkBlockEntity nbe in betp.connectedNetwork.GetConnected())
-                    {
-                        networkList.Add(nbe.Pos);
-                    }
-                }
-
-                BELiquidPlanet belp = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as BELiquidPlanet;
-                if (belp != null)
-                {
-                    inventoryList.Add(belp.connectedTo);
-                    foreach(NetworkBlockEntity nbe in belp.connectedNetwork.GetConnected())
-                    {
-                        networkList.Add(nbe.Pos);
-                    }
-                }
-
-                EnergyBlockEntity ebe = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as EnergyBlockEntity;
-                if (ebe != null)
-                {
-                    foreach(EnergyBlockEntity neighbor in ebe.neighbors)
-                    {
-                        networkList.Add(neighbor.Pos);
-                    }
-                }
+                (api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as IHighlightable)?.GetHighlightedBlocks(ref blueList, ref orangeList);
             }
             // Update highlights
-            api.World.HighlightBlocks(player, 51, inventoryList, invColor);
-            api.World.HighlightBlocks(player, 52, networkList, netColor);
+            api.World.HighlightBlocks(player, 51, orangeList, invColor);
+            api.World.HighlightBlocks(player, 52, blueList, netColor);
         }
     }
 }

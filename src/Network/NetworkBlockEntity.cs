@@ -5,7 +5,7 @@ using Vintagestory.API.MathTools;
 
 namespace cosmosis
 {
-    public class NetworkBlockEntity : BlockEntity
+    public class NetworkBlockEntity : BlockEntity, IHighlightable
     {
 
         public Network connectedNetwork; // Shared network for connected entities
@@ -87,6 +87,14 @@ namespace cosmosis
         public virtual void ConnectToNetwork(Network net)
         {
             connectedNetwork = net;
+        }
+
+        public virtual void GetHighlightedBlocks(ref List<BlockPos> blueList, ref List<BlockPos> orangeList)
+        {
+            foreach(NetworkBlockEntity nbe in connectedNetwork.GetConnected())
+            {
+                blueList.Add(nbe.Pos);
+            }
         }
 
         // Saves attributes to the tree

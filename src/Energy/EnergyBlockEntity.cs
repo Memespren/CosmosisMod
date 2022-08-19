@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 
 namespace cosmosis
 {
-    public class EnergyBlockEntity : BlockEntity
+    public class EnergyBlockEntity : BlockEntity, IHighlightable
     {
         public event Action<EnergyBlockEntity> OnRemoved;
 
@@ -22,8 +22,12 @@ namespace cosmosis
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
-            if (neighbors == null)
-                neighbors = new HashSet<EnergyBlockEntity>();
+            FindNeighbors();
+            RecalculatePaths(new HashSet<EnergyBlockEntity>());
+        }
+
+        public virtual void FindNeighbors()
+        {
             for(int i = -range; i <= range; i++)
             {
                 for(int j = -range; j <= range; j++)
@@ -34,14 +38,22 @@ namespace cosmosis
                         EnergyBlockEntity ebe = Api.World.BlockAccessor.GetBlockEntity(check) as EnergyBlockEntity;
                         if (ebe != null && ebe != this)
                         {
-                            AddNeighbor(ebe);
-                            ebe.AddNeighbor(this);
+                            if (CheckNeighbor(ebe) && ebe.CheckNeighbor(this))
+                            {
+                                AddNeighbor(ebe);
+                                ebe.AddNeighbor(this);
+                            }
                         }
                     }
                 }
             }
-            RecalculatePaths(new HashSet<EnergyBlockEntity>());
         }
+
+        public virtual bool CheckNeighbor(EnergyBlockEntity other)
+        {
+            return true;
+        }
+
         public void RecalculatePaths(HashSet<EnergyBlockEntity> visited)
         {
             visited.Add(this);
@@ -63,6 +75,15 @@ namespace cosmosis
         public void RemoveNeighbor(EnergyBlockEntity neighbor)
         {
             neighbors.Remove(neighbor);
+        }
+
+        public virtual void GetHighlightedBlocks(ref List<BlockPos> blueList, ref List<BlockPos> orangeList)
+        {
+            blueList.Add(Pos);
+            foreach (EnergyBlockEntity ebe in neighbors)
+            {
+                blueList.Add(ebe.Pos);
+            }
         }
 
         public override void OnBlockUnloaded()

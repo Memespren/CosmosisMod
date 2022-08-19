@@ -14,5 +14,10 @@ namespace cosmosis
                 (ebe as EnergyNode)?.BuildPath(this, new LinkedList<EnergyNode>());
             }
         }
+
+        public override bool CheckNeighbor(EnergyBlockEntity other)
+        {
+            return (other is EnergyNode);
+        }
     }
 }

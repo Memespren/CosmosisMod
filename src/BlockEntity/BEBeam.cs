@@ -61,17 +61,6 @@ namespace cosmosis
                 renderer = new BeamRenderer(api as ICoreClientAPI, Pos, baseMesh, topMesh, shotMesh, Block.LastCodePart());
                 (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "beam");
             }
-
-            //RegisterGameTickListener(OnGameTick, 1000);
-        }
-
-        public void OnGameTick(float dt)
-        {
-            if (renderer != null && player != null)
-            {   
-                renderer.Shoot();
-                renderer.setTarget(player.CameraPos);
-            }   
         }
 
         public override void AlignTo(BlockPos pos)
@@ -82,6 +71,17 @@ namespace cosmosis
         public override void Trigger()
         {
             renderer?.Shoot();
+        }
+
+        public override bool CheckNeighbor(EnergyBlockEntity other)
+        {
+            BEBeam otherBeam = other as BEBeam;
+            if (otherBeam != null)
+            {
+                return Block.Variant["metal"] == otherBeam.Block.Variant["metal"];
+            }
+            return base.CheckNeighbor(other);
+
         }
 
         MeshData baseMesh
