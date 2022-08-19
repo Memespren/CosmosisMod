@@ -36,5 +36,9 @@
   "block-liquidplanet-peridotite": "Peridotite Liquid Transfer Planet",
   "block-liquidplanet-phyllite": "Phyllite Liquid Transfer Planet",
   "block-liquidplanet-slate": "Slate Liquid Transfer Planet",
-  "block-liquidplanet-bauxite": "Bauxite Liquid Transfer Planet"
+  "block-liquidplanet-bauxite": "Bauxite Liquid Transfer Planet",
+
+  "item-beambase-*": "Transmission Beam Base",
+  "item-beamtop-*": "Transmission Beam Emitter",
+  "block-beam-*": "Transmission Beam"
 }

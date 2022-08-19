@@ -1,0 +1,50 @@
+﻿{
+  "code": "beam",
+  "entityClass": "beam",
+  "maxstacksize": 16,
+  "behaviors": [
+    {"name": "OmniAttachable", "properties": {"facingCode": "position"}}
+  ],
+  "variantgroups": [
+    { "loadFromProperties": "game:block/wood" },
+    { "code": "metal", "states": ["gold", "silver"] },
+    { "code":"position", "states": ["up", "down"], "loadFromProperties": "abstract/horizontalorientation" }
+  ],
+  "shape": {
+    "base": "block/beamwhole"
+  },
+  "textures": {
+    "Iron": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Gold": {
+      "base": "game:block/metal/plate/{metal}"
+    },
+    "Glass": {
+      "base": "block/mirror"
+    },
+    "Wood": {
+      "base": "game:block/wood/debarked/{wood}"
+    },
+    "Energy": {
+      "base": "block/mirror"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*-up" ],
+    "general": [ "*-up" ]
+  },
+  "drops": [
+		{
+			"type": "block",
+			"code": "beam-{wood}-{metal}-up"
+		}
+  ],
+  "requiredMiningTier": 2,
+	"resistance": 3,
+  "drawtype": "json",
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "sideao": { "all": false },
+  "lightAbsorption": 0
+}

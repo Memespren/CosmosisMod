@@ -1,0 +1,30 @@
+﻿{
+  "code": "beamtop",
+  "maxstacksize": 16,
+  "variantgroups": [
+    { "code": "metal", "states": ["gold", "silver"] }
+  ],
+  "shape": { "base": "block/beamtop" },
+  "textures": {
+    "Iron": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Gold": {
+      "base": "game:block/metal/plate/{metal}"
+    },
+    "Glass": {
+      "base": "block/mirror"
+    },
+    "Wood": {
+      "base": "game:block/wood/debarked/oak"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "guiTransform": {
+    "rotation": {"x":-45 , "y":225, "z": 45},
+    "translation": {"x": 10, "y": 10,  "z":0}
+  }
+}

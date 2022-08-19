@@ -1,0 +1,20 @@
+{
+	code: "tempsource",
+    entityClass: "esource",
+	drawtype: "cube",
+	sidesolid: { all: true },
+	sideopaque: { all: true },
+	blockmaterial: "Metal",
+	creativeinventory: { "general": ["*"], "cosmosis": ["*"] },
+	replaceable: 300,
+	resistance: 2,
+	lightAbsorption: 1,
+	emitSideAo: {
+		all: false
+	},
+	textures: {
+		all: { 
+			base: "game:block/metal/sheet/copper1"
+		}
+	}
+}

@@ -1,0 +1,31 @@
+﻿{
+  "code": "beambase",
+  "maxstacksize": 16,
+  "variantgroups": [
+    { "loadFromProperties": "game:block/wood" },
+    { "code": "metal", "states": ["gold", "silver"] }
+  ],
+  "shape": { "base": "block/beambase" },
+  "textures": {
+    "Iron": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Gold": {
+      "base": "game:block/metal/plate/{metal}"
+    },
+    "Glass": {
+      "base": "block/mirror"
+    },
+    "Wood": {
+      "base": "game:block/wood/debarked/{wood}"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "guiTransform": {
+    "rotation": {"x":0 , "y":30, "z": 165},
+    "translation": {"x": -10, "y": 0,  "z":0}
+  }
+}

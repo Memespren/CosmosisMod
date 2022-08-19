@@ -33,6 +33,9 @@ namespace cosmosis
             api.RegisterBlockEntityClass("transferplanet", typeof(BETransferPlanet));
             api.RegisterBlockEntityClass("lookingglass", typeof(BELookingGlass));
             api.RegisterBlockEntityClass("liquidplanet", typeof(BELiquidPlanet));
+            api.RegisterBlockEntityClass("beam", typeof(BEBeam));
+            api.RegisterBlockEntityClass("esource", typeof(EnergySource));
+            api.RegisterBlockEntityClass("esink", typeof(EnergySink));
 
             api.Network.RegisterChannel("cosmosis:itemrequest").RegisterMessageType(typeof(ItemRequestPacket));
         }

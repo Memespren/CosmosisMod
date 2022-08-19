@@ -1,0 +1,289 @@
+{
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {},
+	"textures": {},
+	"elements": [
+		{
+			"name": "Base0",
+			"from": [1, 0, 1],
+			"to": [15, 1, 15],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 1],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 1],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 1],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 1],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 14],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Iron",
+					"uv": [0, 0, 14, 14],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "LBracket1",
+			"from": [13, 2, 5],
+			"to": [14, 11, 11],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 9],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Wood",
+					"uv": [0, 0, 6, 9],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 9],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Wood",
+					"uv": [0, 0, 6, 9],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 6],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 6],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "RBracket2",
+			"from": [2, 2, 5],
+			"to": [3, 11, 11],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 9],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Wood",
+					"uv": [0, 0, 6, 9],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 9],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Wood",
+					"uv": [0, 0, 6, 9],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 6],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 6],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "RBracketBase3",
+			"from": [1, 1, 3],
+			"to": [4, 2, 13],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 1],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Gold",
+					"uv": [0, 0, 10, 1],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 1],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Gold",
+					"uv": [0, 0, 10, 1],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 10],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 10],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "LBracketBase4",
+			"from": [12, 1, 3],
+			"to": [15, 2, 13],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 1],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Gold",
+					"uv": [0, 0, 10, 1],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 1],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Gold",
+					"uv": [0, 0, 10, 1],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 10],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Gold",
+					"uv": [0, 0, 3, 10],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "LBracketTop5",
+			"from": [13, 11, 6],
+			"to": [14, 12, 10],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 1],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Wood",
+					"uv": [0, 0, 4, 1],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 1],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Wood",
+					"uv": [0, 0, 4, 1],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 4],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 4],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		},
+		{
+			"name": "RBracketTop6",
+			"from": [2, 11, 6],
+			"to": [3, 12, 10],
+			"rotationOrigin": [8, 0, 8],
+			"faces": {
+				"north": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 1],
+					"autoUv": false
+				},
+				"east": {
+					"texture": "#Wood",
+					"uv": [0, 0, 4, 1],
+					"autoUv": false
+				},
+				"south": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 1],
+					"autoUv": false
+				},
+				"west": {
+					"texture": "#Wood",
+					"uv": [0, 0, 4, 1],
+					"autoUv": false
+				},
+				"up": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 4],
+					"autoUv": false
+				},
+				"down": {
+					"texture": "#Wood",
+					"uv": [0, 0, 1, 4],
+					"autoUv": false
+				}
+			},
+			"parent": null,
+			"children": []
+		}
+	],
+	"animations": []
+}

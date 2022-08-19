@@ -1,0 +1,56 @@
+﻿[
+  {
+    "ingredientPattern": "TI,BS",
+    "ingredients": {
+      "T": {
+        "type": "item",
+        "code": "beamtop-gold"
+      },
+      "S": {
+        "type": "item",
+        "code": "game:solderbar-*",
+        "quantity": 2
+      },
+      "B": {
+        "type": "item",
+        "code": "beambase-*-gold",
+        "name": "wood"
+      },
+      "I": {
+        "type": "item",
+        "code": "game:solderingiron",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 2,
+    "output": {"type": "block", "code": "beam-{wood}-gold-up", "quantity": 1}
+  },
+  {
+    "ingredientPattern": "TI,BS",
+    "ingredients": {
+      "T": {
+        "type": "item",
+        "code": "beamtop-silver"
+      },
+      "S": {
+        "type": "item",
+        "code": "game:solderbar-*",
+        "quantity": 2
+      },
+      "B": {
+        "type": "item",
+        "code": "beambase-*-silver",
+        "name": "wood"
+      },
+      "I": {
+        "type": "item",
+        "code": "game:solderingiron",
+        "isTool": true
+      }
+    },
+    "width": 2,
+    "height": 2,
+    "output": {"type": "block", "code": "beam-{wood}-silver-up", "quantity": 1}
+  }
+]

@@ -1,0 +1,36 @@
+﻿[
+  {
+    "ingredientPattern": "B_B,BLB,HPS",
+    "ingredients": {
+      "L": {
+        "type": "item",
+        "code": "game:metallamellae-*",
+        "name": "metal",
+        "allowedVariants": ["gold", "silver"]
+      },
+      "H": {
+        "type": "item",
+        "code": "game:hammer-*",
+        "isTool": true
+      },
+      "P": {
+        "type": "item",
+        "code": "game:metalplate-iron"
+      },
+      "B": {
+        "type": "item",
+        "code": "game:plank-*",
+        "name": "wood",
+        "quantity": 2
+      },
+      "S": {
+        "type": "item",
+        "code": "game:saw-*",
+        "isTool": true
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {"type": "item", "code": "beambase-{wood}-{metal}", "quantity": 1}
+  }
+]

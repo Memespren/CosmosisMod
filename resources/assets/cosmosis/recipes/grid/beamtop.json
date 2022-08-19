@@ -1,0 +1,44 @@
+﻿[
+  {
+    "ingredientPattern": "CLH,GII,CAS",
+    "ingredients": {
+      "C": {
+        "type": "item",
+        "code": "cosmicshard",
+        "quantity": 2
+      },
+      "L": {
+        "type": "item",
+        "code": "game:metallamellae-*",
+        "name": "metal",
+        "allowedVariants": ["gold", "silver"]
+      },
+      "H": {
+        "type": "item",
+        "code": "game:hammer-*",
+        "isTool": true
+      },
+      "G": {
+        "type": "block",
+        "code": "game:glass-plain",
+        "quantity": 2
+      },
+      "I": {
+        "type": "item",
+        "code": "game:ingot-iron"
+      },
+      "A": {
+        "type": "block",
+        "code": "game:woodenaxle-*"
+      },
+      "S": {
+        "type": "item",
+        "code": "game:saw-*",
+        "isTool": true
+      }
+    },
+    "width": 3,
+    "height": 3,
+    "output": {"type": "item", "code": "beamtop-{metal}", "quantity": 1}
+  }
+]

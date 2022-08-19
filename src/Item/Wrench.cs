@@ -224,6 +224,15 @@ namespace cosmosis
                         networkList.Add(nbe.Pos);
                     }
                 }
+
+                EnergyBlockEntity ebe = api.World.BlockAccessor.GetBlockEntity(player.CurrentBlockSelection.Position) as EnergyBlockEntity;
+                if (ebe != null)
+                {
+                    foreach(EnergyBlockEntity neighbor in ebe.neighbors)
+                    {
+                        networkList.Add(neighbor.Pos);
+                    }
+                }
             }
             // Update highlights
             api.World.HighlightBlocks(player, 51, inventoryList, invColor);
