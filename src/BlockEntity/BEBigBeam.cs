@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
@@ -9,12 +10,20 @@ using Vintagestory.GameContent;
 
 namespace cosmosis
 {
-    public class BEBeam : EnergyNode
+    public class BEBigBeam : EnergySink
     {
 
-        private BeamRenderer renderer; // Rendering handler 
+        private BigBeamRenderer renderer; // Rendering handler 
 
-        private EntityPlayer player;
+        private Entity target;
+
+        public static HashSet<Entity> targets;
+
+        static BEBigBeam()
+        {
+            targets = new HashSet<Entity>();
+        }
+
 
         public override void Initialize(ICoreAPI api)
         {
@@ -23,7 +32,6 @@ namespace cosmosis
             //Handle client initialization
             if (api.Side == EnumAppSide.Client)
             {
-                player = (api as ICoreClientAPI).World.Player.Entity;
                 //Generate planet mesh for renderer
                 if (baseMesh == null){
                     Block block = api.World.BlockAccessor.GetBlock(Pos);
@@ -31,7 +39,7 @@ namespace cosmosis
                     {
                         MeshData mesh;
                         ITesselatorAPI mesher = (api as ICoreClientAPI).Tesselator;
-                        mesher.TesselateShape(block, Shape.TryGet(Api, "cosmosis:shapes/block/beambase.json"), out mesh);
+                        mesher.TesselateShape(block, Shape.TryGet(Api, "cosmosis:shapes/block/bigbase.json"), out mesh);
                         baseMesh = mesh;
                     }
                 }
@@ -42,7 +50,7 @@ namespace cosmosis
                     {
                         MeshData mesh;
                         ITesselatorAPI mesher = (api as ICoreClientAPI).Tesselator;
-                        mesher.TesselateShape(block, Shape.TryGet(Api, "cosmosis:shapes/block/beamtop.json"), out mesh);
+                        mesher.TesselateShape(block, Shape.TryGet(Api, "cosmosis:shapes/block/bigtop.json"), out mesh);
                         topMesh = mesh;
                     }
                 }
@@ -58,60 +66,39 @@ namespace cosmosis
                     }
                 }
                 //Register renderer
-                renderer = new BeamRenderer(api as ICoreClientAPI, Pos, baseMesh, topMesh, shotMesh, Block.LastCodePart());
-                (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "beam");
+                renderer = new BigBeamRenderer(api as ICoreClientAPI, Pos, baseMesh, topMesh, shotMesh);
+                (api as ICoreClientAPI).Event.RegisterRenderer(renderer, EnumRenderStage.Opaque, "bigbeam");
             }
+            RegisterGameTickListener(OnGameTick, 100);
+            //RegisterGameTickListener(GameTick, 1000);
+
+            Setup(800, 200, 1000);
         }
 
-        public override bool AlignTo(EnergyBlockEntity target)
+        public void OnGameTick(float dt)
         {
-            renderer?.setTarget(target.Pos);
+            if (target != null && renderer != null)
+                renderer.setTarget(target.Pos.XYZ);
+        }
 
-            BlockSelection bsel = null;
-            EntitySelection esel = null;
-            Api.World.RayTraceForSelection(Pos.ToVec3d().Add(0.5,0.5,0.5), target.Pos.ToVec3d().Add(0.5,0.5,0.5), ref bsel, ref esel,
-            (p, block) => {
-                return block.Attributes?["beamPassable"]?.Exists == false;
-            },
-            (entity) => false);
-
-            if (bsel != null)
+        public override bool DoOperation()
+        {
+            if (target != null)
             {
-                RemoveNeighbor(target);
-                target.RemoveNeighbor(this);
-                return false;
+                (target as EntityAgent).ReceiveDamage(new DamageSource(), 100);
+                targets.Remove(target);
+                target = null;
+                if (renderer != null)
+                    renderer.Shoot();
+
+                return true;
             }
-            return true;
-        }
-
-        public override void Trigger()
-        {
-            renderer?.Shoot();
-        }
-
-        public override bool CheckNeighbor(EnergyBlockEntity other)
-        {
-            if (Api == null)
-                return false;
-
-            BlockSelection bsel = null;
-            EntitySelection esel = null;
-            Api.World.RayTraceForSelection(Pos.ToVec3d().Add(0.5,0.5,0.5), other.Pos.ToVec3d().Add(0.5,0.5,0.5), ref bsel, ref esel,
-            (pos, block) => {
-                return block.Attributes?["beamPassable"].Exists == false;
-            },
-            (entity) => false);
-
-            if(bsel != null)
-                return false;
-
-            BEBeam otherBeam = other as BEBeam;
-            if (otherBeam != null)
+            else
             {
-                return Block.Variant["metal"] == otherBeam.Block.Variant["metal"];
+                target = Api.World.GetNearestEntity(Pos.ToVec3d(), 50, 50, (entity) => ((entity is EntityDrifter) && entity.Alive && !targets.Contains(entity)));
+                targets.Add(target);
+                return false;
             }
-            return base.CheckNeighbor(other);
-
         }
 
         MeshData baseMesh
@@ -119,12 +106,12 @@ namespace cosmosis
             get
             {
                 object value = null;
-                Api.ObjectCache.TryGetValue("cosmosis:beambase-" + Block.Variant["wood"] + "-" + Block.Variant["metal"], out value);
+                Api.ObjectCache.TryGetValue("cosmosis:bigbeambase", out value);
                 return (MeshData)value;
             }
             set
             {
-                Api.ObjectCache["cosmosis:beambase-" + Block.Variant["wood"] + "-" + Block.Variant["metal"]] = value;
+                Api.ObjectCache["cosmosis:bigbeambase"] = value;
             }
         }
 
@@ -133,12 +120,12 @@ namespace cosmosis
             get
             {
                 object value = null;
-                Api.ObjectCache.TryGetValue("cosmosis:beamtop-" + Block.Variant["wood"] + "-" + Block.Variant["metal"], out value);
+                Api.ObjectCache.TryGetValue("cosmosis:bigbeamtop", out value);
                 return (MeshData)value;
             }
             set
             {
-                Api.ObjectCache["cosmosis:beamtop-" + Block.Variant["wood"] + "-" + Block.Variant["metal"]] = value;
+                Api.ObjectCache["cosmosis:bigbeamtop"] = value;
             }
         }
 
@@ -156,10 +143,10 @@ namespace cosmosis
             }
         }
 
-        public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
-        {
-            return (renderer != null);
-        }
+        // public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tessThreadTesselator)
+        // {
+        //     return (renderer != null);
+        // }
 
         public override void OnBlockRemoved()
         {

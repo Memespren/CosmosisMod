@@ -56,13 +56,22 @@ namespace cosmosis
             }
         }
 
-        public void Align()
+        public bool Align()
         {
             for(int i = 0; i < nodes.Count-1; ++i)
             {
-                nodes[i].AlignTo(nodes[i+1].Pos);
+                if(!nodes[i].AlignTo(nodes[i+1]))
+                {
+                    NodeRemoved(nodes[i]);
+                    return false;
+                }
             }
-            nodes[nodes.Count-1].AlignTo(sink.Pos);
+            if(!nodes[nodes.Count-1].AlignTo(sink))
+            {
+                NodeRemoved(nodes[nodes.Count-1]);
+                return false;
+            }
+            return true;
         }
 
         public void Trigger()

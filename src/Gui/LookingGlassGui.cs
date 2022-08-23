@@ -17,5 +17,10 @@ namespace cosmosis
             if (this.IsDuplicate)
                 return;
         }
+
+        public override void Recompose()
+        {
+            base.Recompose();
+        }
     }
 }

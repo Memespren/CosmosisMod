@@ -27,9 +27,9 @@ namespace cosmosis
             }
         }
 
-        public virtual void AlignTo(BlockPos pos)
+        public virtual bool AlignTo(EnergyBlockEntity target)
         {
-
+            return true;
         }
 
         public virtual void Trigger()

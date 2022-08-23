@@ -4,7 +4,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-	<Reference Include="protobuf-net">
+		<Reference Include="protobuf-net">
 			<HintPath>$(VINTAGE_STORY_RC)/Lib/protobuf-net.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
@@ -18,6 +18,10 @@
 		</Reference>
 		<Reference Include="VintagestoryAPI">
 			<HintPath>$(VINTAGE_STORY_RC)/Mods/VSSurvivalMod.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Cairo">
+			<HintPath>$(VINTAGE_STORY_RC)/Lib/cairo-sharp.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>

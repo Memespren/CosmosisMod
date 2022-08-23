@@ -102,7 +102,6 @@ namespace cosmosis
             IStandardShaderProgram prog = rpi.PreparedStandardShader(pos.X, pos.Y, pos.Z);
             prog.Tex2D = api.BlockTextureAtlas.AtlasTextureIds[0];
 
-
             prog.ModelMatrix = ModelMat
                 .Identity()
                 .Translate(pos.X - camPos.X, pos.Y - camPos.Y, pos.Z - camPos.Z)

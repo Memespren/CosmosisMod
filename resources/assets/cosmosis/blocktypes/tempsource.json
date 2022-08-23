@@ -1,6 +1,9 @@
 {
 	code: "tempsource",
     entityClass: "esource",
+	"attributes": {
+		"beamPassable": true
+	  },
 	drawtype: "cube",
 	sidesolid: { all: true },
 	sideopaque: { all: true },

@@ -1,0 +1,49 @@
+﻿{
+  "code": "bigbeam",
+  "entityClass": "bigbeam",
+  "maxstacksize": 1,
+  "attributes": {
+    "beamPassable": true
+  },
+  "behaviors": [
+    {"name": "Multiblock", "properties": {
+      "sizex": 3, "sizey": 3, "sizez": 3,
+      "cposition": {"x": 1, "y": 0, "z": 1}
+    }}
+  ],
+  "shape": {
+    "base": "block/bigplate"
+  },
+  "textures": {
+    "Iron": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Gold": {
+      "base": "game:block/metal/plate/gold"
+    },
+    "Glass": {
+      "base": "block/mirror"
+    },
+    "Steel": {
+      "base": "game:block/metal/plate/steel"
+    },
+    "Log": {
+      "base": "game:block/wood/bark/oak"
+    },
+    "Energy": {
+      "base": "block/mirror"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "requiredMiningTier": 2,
+	"resistance": 3,
+  "drawtype": "json",
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "sideao": { "all": false },
+  "facecullmode": "nevercull",
+  "lightAbsorption": 0
+}

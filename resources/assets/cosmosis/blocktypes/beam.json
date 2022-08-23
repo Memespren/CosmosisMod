@@ -2,6 +2,9 @@
   "code": "beam",
   "entityClass": "beam",
   "maxstacksize": 16,
+  "attributes": {
+    "beamPassable": true
+  },
   "behaviors": [
     {"name": "OmniAttachable", "properties": {"facingCode": "position"}}
   ],

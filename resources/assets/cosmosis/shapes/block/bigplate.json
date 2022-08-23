@@ -1,0 +1,444 @@
+{
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {},
+	"textures": {},
+	"elements": [
+		{
+			"name": "Plate",
+			"rotationOrigin": [8, 0, 8],
+			"from": [0, 0, 0],
+			"to": [0, 0, 0],
+			"parent": null,
+			"faces": {
+				"north": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				},
+				"east": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				},
+				"south": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				},
+				"west": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				},
+				"up": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				},
+				"down": {
+					"texture": "#",
+					"uv": [0, 0, 0, 0]
+				}
+			},
+			"children": [
+				{
+					"name": "Base0",
+					"from": [-14, 0, -13],
+					"to": [30, 2, 29],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 16],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Iron",
+							"uv": [0, 0, 16, 16],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts5",
+					"from": [25, 2, -12],
+					"to": [29, 4, -8],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts6",
+					"from": [-13, 2, -12],
+					"to": [-9, 4, -8],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts7",
+					"from": [-13, 2, 24],
+					"to": [-9, 4, 28],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts8",
+					"from": [25, 2, 24],
+					"to": [29, 4, 28],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts20",
+					"from": [25, 2, 6],
+					"to": [29, 4, 10],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts21",
+					"from": [-12, 2, 6],
+					"to": [-8, 4, 10],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts22",
+					"from": [5, 2, -12],
+					"to": [9, 4, -8],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "Bolts23",
+					"from": [5, 2, 24],
+					"to": [9, 4, 28],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Steel",
+							"uv": [0, 0, 4, 4],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				},
+				{
+					"name": "UpperBase26",
+					"from": [-4, 2, -4],
+					"to": [20, 4, 20],
+					"rotationOrigin": [8, 0, 8],
+					"faces": {
+						"north": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"east": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"south": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"west": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 2],
+							"autoUv": false
+						},
+						"up": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 16],
+							"autoUv": false
+						},
+						"down": {
+							"texture": "#Gold",
+							"uv": [0, 0, 16, 16],
+							"autoUv": false
+						}
+					},
+					"parent": "Plate",
+					"children": []
+				}
+			]
+		}
+	],
+	"animations": []
+}

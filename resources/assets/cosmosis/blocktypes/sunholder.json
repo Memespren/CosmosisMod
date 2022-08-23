@@ -1,0 +1,50 @@
+﻿{
+  "code": "sunholder",
+  "entityClass": "sunholder",
+  "maxstacksize": 1,
+  "attributes": {
+    "beamPassable": true
+  },
+  "behaviors": [
+    {"name": "Multiblock", "properties": {
+      "sizex": 1, "sizey": 2, "sizez": 1,
+      "cposition": {"x": 0, "y": 0, "z": 0}
+    }}
+  ],
+  "shape": {
+    "base": "block/sunholder"
+  },
+  "textures": {
+    "Tank": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Trim": {
+      "base": "game:block/metal/plate/gold"
+    },
+    "Glass": {
+      "base": "block/mirror"
+    },
+    "Arm": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Holder": {
+      "base": "game:block/metal/plate/iron"
+    },
+    "Planet": {
+      "base": "game:block/creative/col35"
+    }
+  },
+  "creativeinventory": {
+    "cosmosis": [ "*" ],
+    "general": [ "*" ]
+  },
+  "requiredMiningTier": 2,
+	"resistance": 3,
+  "drawtype": "json",
+  "sidesolid": { "all": true },
+  "sideopaque": { "all": false },
+  "sideao": { "all": false },
+  "facecullmode": "nevercull",
+  "lightAbsorption": 0,
+  "lightHsv": [ 7, 7, 31 ]
+}

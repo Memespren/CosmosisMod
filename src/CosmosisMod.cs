@@ -34,6 +34,8 @@ namespace cosmosis
             api.RegisterBlockEntityClass("lookingglass", typeof(BELookingGlass));
             api.RegisterBlockEntityClass("liquidplanet", typeof(BELiquidPlanet));
             api.RegisterBlockEntityClass("beam", typeof(BEBeam));
+            api.RegisterBlockEntityClass("bigbeam", typeof(BEBigBeam));
+            api.RegisterBlockEntityClass("sunholder", typeof (BESunHolder));
             api.RegisterBlockEntityClass("esource", typeof(EnergySource));
             api.RegisterBlockEntityClass("esink", typeof(EnergySink));
 

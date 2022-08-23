@@ -13,6 +13,8 @@ namespace cosmosis
 
         private EnergyPath alignedPath;
 
+        private int packetSize = 100;
+
         public EnergySource() : base()
         {
             paths = new Dictionary<EnergySink, EnergyPath>();
@@ -29,16 +31,19 @@ namespace cosmosis
         {
             if (alignedPath != null)
             {
+                alignedPath.sink.SendEnergy(packetSize);
                 alignedPath.Trigger();
                 alignedPath = null;
             }
-            if (toServe.Count > 0)
+            for (int i = 0; i < toServe.Count; ++i)
             {
                 EnergySink sink = toServe.Dequeue();
                 if(paths.ContainsKey(sink)){
-                    paths[sink].Align();
-                    alignedPath = paths[sink];
                     toServe.Enqueue(sink);
+                    if(!sink.isFull() && paths[sink].Align()){
+                        alignedPath = paths[sink];
+                        break;
+                    }
                 }
             }
         }

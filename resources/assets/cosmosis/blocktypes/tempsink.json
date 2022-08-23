@@ -1,6 +1,9 @@
 {
 	code: "tempsink",
     entityClass: "esink",
+	"attributes": {
+		"beamPassable": true
+	  },
 	drawtype: "cube",
 	sidesolid: { all: true },
 	sideopaque: { all: true },
