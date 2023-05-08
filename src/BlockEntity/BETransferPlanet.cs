@@ -191,7 +191,7 @@ namespace cosmosis
                     //Generate Mesh
                     MeshData mesh;
                     ITesselatorAPI mesher = (Api as ICoreClientAPI).Tesselator;
-                    mesher.TesselateShape("facade", Shape.TryGet(Api, "game:shapes/block/basic/cube.json"), out mesh, mesher.GetTexSource(facadeInv[0].Itemstack.Block));
+                    mesher.TesselateShape("facade", Shape.TryGet(Api, "game:shapes/block/basic/cube.json"), out mesh, mesher.GetTextureSource(facadeInv[0].Itemstack.Block));
                     facadeMesh = mesh;
                     renderer.doRender = false;
                 }

@@ -38,7 +38,13 @@
   "block-liquidplanet-slate": "Slate Liquid Transfer Planet",
   "block-liquidplanet-bauxite": "Bauxite Liquid Transfer Planet",
 
-  "item-beambase-*": "Transmission Beam Base",
-  "item-beamtop-*": "Transmission Beam Emitter",
-  "block-beam-*": "Transmission Beam"
+  "item-beambase-*": "Transmission Beam Base[WIP]",
+  "item-beamtop-*": "Transmission Beam Emitter[WIP]",
+  "block-beam-*": "Transmission Beam[WIP]",
+
+  "block-sunholder": "Solar Pedestal[WIP]",
+  "block-bigbeam": "BFC-9000[WIP]",
+  "block-tempsink": "Test Sink[WIP]",
+  "block-tempsource": "Test Source[WIP]"
+
 }

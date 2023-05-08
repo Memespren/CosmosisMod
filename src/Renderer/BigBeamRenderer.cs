@@ -67,7 +67,7 @@ namespace cosmosis
             rpi.GlToggleBlend(true);
 
             IStandardShaderProgram prog = rpi.PreparedStandardShader(pos.X, pos.Y, pos.Z);
-            prog.Tex2D = api.BlockTextureAtlas.AtlasTextureIds[0];
+            prog.Tex2D = api.BlockTextureAtlas.AtlasTextures[0].TextureId;
 
 
             prog.ModelMatrix = ModelMat

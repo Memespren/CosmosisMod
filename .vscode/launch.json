@@ -1,11 +1,12 @@
 {
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+      {
       "name": "Launch Client",
       "type": "mono",
       "request": "launch",
       "preLaunchTask": "Build (Debug)",
-      "program": "${env:VINTAGE_STORY_RC}/Vintagestory.exe",
+      "program": "${env:VINTAGE_STORY}/Vintagestory.exe",
       "args": [
         "--playStyle" , "creativebuilding",
         "--openWorld" , "modding test world",
